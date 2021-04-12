@@ -1,10 +1,47 @@
-<button
-    class="btn btn-primary"
-    [disabled]="!allowNewServer"
-    (click)="onCreateServer()"
->
-    Add Server
-</button>
-<p>{{ serverCreationStatus }}</p>
-<app-server></app-server>
-<app-server></app-server>
+<div class="container">
+    <div class="container">
+        <label for="user">User Name</label>
+        <input
+            type="text"
+            id="user"
+            class="form-control"
+            [(ngModel)]="userName"
+        >
+        <p>User Name: {{ userName }}</p>
+        <button
+            class="btn btn-primary"
+            [disabled]="!userName"
+            (click)="onResetUserName()"
+        >
+            Reset User Name
+        </button>
+    </div>
+    <div class="container">
+        <label for="name">Server Name</label>
+        <!-- <input
+            type="text"
+            class="form-control"
+            (input)="onUpdateServerName($event)"
+        > -->
+        <input
+            type="text"
+            id="name"
+            class="form-control"
+            [(ngModel)]="serverName"
+        >
+        <button
+            class="btn btn-primary"
+            [disabled]="isServerCreated"
+            (click)="onCreateServer()"
+        >
+            Add Server
+        </button>
+        <p>Server Name: {{ serverName }}</p>
+        <p *ngIf="isServerCreated; else noServer">Server created. Name is {{ this.serverName }}</p>
+        <ng-template #noServer>
+            <p>No server was created!</p>
+        </ng-template>
+    </div>
+    <app-server></app-server>
+    <app-server></app-server>
+</div>

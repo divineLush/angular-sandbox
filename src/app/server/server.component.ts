@@ -26,6 +26,13 @@ export class ServerComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  get serverClass() {
+    return {
+      _online: this._serverStatus === ServerStatus.ONLINE,
+      _offline: this._serverStatus === ServerStatus.OFFLINE,
+    }
+  }
+
   getServerStatus() {
     return this._serverStatus;
   }

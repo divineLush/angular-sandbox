@@ -42,6 +42,16 @@
             <p>No server was created!</p>
         </ng-template>
     </div>
-    <app-server></app-server>
-    <app-server></app-server>
+    <app-server *ngFor="let server of servers"></app-server>
+    <button class="btn btn-primary" (click)="onToggleDetails()">Toggle details</button>
+    <p *ngIf="isDetailsVisible">Details</p>
+    <div class="details-log">
+        <p
+            class="detail"
+            *ngFor="let log of detailsLog; let i = index"
+            [ngStyle]="{ backgroundColor: i >= 5 ? 'white' : 'black' }"
+        >
+            {{ log }}
+        </p>
+    </div>
 </div>

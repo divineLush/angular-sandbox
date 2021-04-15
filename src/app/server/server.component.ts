@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 enum ServerStatus {
+  ONLINE = 'online',
   OFFLINE = 'offline',
 }
 
@@ -18,12 +19,18 @@ export class ServerComponent implements OnInit {
   serverID: number = 1;
   private _serverStatus: ServerStatus = ServerStatus.OFFLINE;
 
-  constructor() { }
+  constructor() {
+    this._serverStatus = Math.random() > 0.5 ? ServerStatus.ONLINE : ServerStatus.OFFLINE;
+  }
 
   ngOnInit(): void {
   }
 
-  getServerStatus () {
+  getServerStatus() {
     return this._serverStatus;
+  }
+
+  getColor() {
+    return this._serverStatus === ServerStatus.ONLINE ? 'green' : 'red';
   }
 }
